@@ -1,14 +1,10 @@
 import './App.css';
-import Header from './components/Header'
-import Pets from './components/Pets'
-import Cuidadores from './components/Cuidadores'
+import Router from './router';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Pets />
-      <Cuidadores />
+      <Router />
     </div>
   );
 }
