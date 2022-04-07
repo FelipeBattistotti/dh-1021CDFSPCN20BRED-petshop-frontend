@@ -1,12 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
+import './styles.css'
 
 const Register = () => {
+  // states
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [pwd, setPwd] = useState('')
 
-  const handleRegister = () => {
+  // Hooks
+  const navigate = useNavigate()
+
+  // functions
+  const handleRegister = async () => {
     const user = {
       nome: name,
       email: email,
@@ -14,17 +22,23 @@ const Register = () => {
     }
 
     try {
-      
+      await axios.post('http://localhost:3000/usuario', user)
+
+      alert('Cadastro efetuado!')
+
+      navigate('/')
+
     } catch (error) {
-      alert(error)
+      alert(error.response.data)
     }
   }
 
+  // JSX
   return (
     <>
       <h1>Criar Conta</h1>
 
-      <div>
+      <div className="container">
         <input
           id="name"
           type="text"
