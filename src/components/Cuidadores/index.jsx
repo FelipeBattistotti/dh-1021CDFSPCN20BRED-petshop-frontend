@@ -10,9 +10,14 @@ const Cuidadores = () => {
     const sendCuidador = async () => {
         const cuidador = {nome: nome, email: email, senha: senha}
         try {
-            const respostaPostCuidador = await axios.post('http://localhost:3000/cuidador', cuidador)
-                .then(res => res.data)
-            console.log(respostaPostCuidador)
+            const respostaPostCuidador = await axios.post('http://localhost:3000/cuidador',
+                                                            cuidador,
+                                                            {
+                                                                headers: {
+                                                                    Authorization: document.cookie.split('=')[1]
+                                                                }
+                                                            }
+                                                        )
         }
         catch(err) {
             console.log(err)
